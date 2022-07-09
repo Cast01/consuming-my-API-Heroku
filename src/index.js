@@ -32,7 +32,7 @@ app.put("/update", async (req, res) => {
   const { id, foodName, daysSinceIAte } = req.body;
 
   try {
-    await food.findById(id, (err, updatedFood) => {
+    await FoodModel.findById(id, (err, updatedFood) => {
       if (err) {
         console.log(err);
       }
