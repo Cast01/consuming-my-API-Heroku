@@ -9,9 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect(
-  "mongodb+srv://gabrie_castilho:senha123456@pedrotech-tutorial-usin.zovde.mongodb.net/food?retryWrites=true&w=majority"
-);
+mongoose.connect(process.env.DATABASEURI);
 
 app.post("/insert", async (req, res) => {
   const { foodName, daysSinceIAte } = req.body;
