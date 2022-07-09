@@ -28,6 +28,25 @@ app.post("/insert", async (req, res) => {
   }
 });
 
+app.put("/update", async (req, res) => {
+  const { id, foodName, daysSinceIAte } = req.body;
+
+  try {
+    await food.findById(id, (err, updatedFood) => {
+      if (err) {
+        console.log(err);
+      }
+
+      updatedFood.foodName = foodName;
+      updatedFood.daysSinceIAte = daysSinceIAte;
+      updatedFood.save();
+      res.send("updated");
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 app.get("/read", async (req, res) => {
   FoodModel.find({}, (err, result) => {
     if (err) {
